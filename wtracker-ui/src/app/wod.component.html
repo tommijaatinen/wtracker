@@ -48,34 +48,37 @@
                 </div>
                 </div>
 
-                <table *ngIf="!show" class="table table-hover table-striped">
-                    <thead class="thead-dark">
-                        <tr class="panel-heading">
-                            <th></th>
-                            <th></th>
-                            <th (click)="onSort('name')" class="clickable">Name<i class="fa fa-fw fa-sort"></i></th>
-                            <th (click)="onSort('type')" class="clickable">Type<i class="fa fa-fw fa-sort"></i></th>
-                            <th (click)="onSort('description')" class="clickable">Description<i class="fa fa-fw fa-sort"></i></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        <tr *ngFor="let wod of filteredWods | sortBy : fieldName : sortAsc; let i = index" class="clickable">
-                            <td>{{i}}</td>
-                            <td>
-                                <img *ngIf="wod.type=='Bodyweight'" src="../assets/bw.png">
-                                <img *ngIf="wod.type=='Kettlebell'" src="../assets/kb.png">
-                                <img *ngIf="wod.type=='Crosstraining'" src="../assets/ct.jpg">
-                            </td>
-                            <td>{{wod.name}}</td>
-                            <td>{{wod.type}}</td>
-                            <td>{{wod.description}}</td>
-                            <td><a href="#" (click)="onUpdate(wod)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>        
-                            <td><a href="#" (click)="onDelete(wod.id)">  <i class="fa fa-trash-o fa-lg"></i></a></td>
-                      </tr>
-                    </tbody>
-                </table>
+                <div *ngIf="filteredWods.length > 0">
+                    <table *ngIf="!show" class="table table-hover table-striped">
+                        <thead>
+                            <tr class="panel-heading">
+                                <th></th>
+                                <th></th>
+                                <th (click)="onSort('name')" class="clickable">Name<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('type')" class="clickable">Type<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('description')" class="clickable">Description<i class="fa fa-fw fa-sort"></i></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="align-middle">
+                            <tr *ngFor="let wod of filteredWods | sortBy : fieldName : sortAsc; let i = index" class="clickable">
+                                <td>{{i}}</td>
+                                <td>
+                                    <img *ngIf="wod.type=='Bodyweight'" src="../assets/bw.png">
+                                    <img *ngIf="wod.type=='Kettlebell'" src="../assets/kb.png">
+                                    <img *ngIf="wod.type=='Crosstraining'" src="../assets/ct.jpg">
+                                </td>
+                                <td>{{wod.name}}</td>
+                                <td>{{wod.type}}</td>
+                                <td>{{wod.description}}</td>
+                                <td><a href="#" (click)="onUpdate(wod)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>        
+                                <td><a href="#" (click)="onDelete(wod.id)">  <i class="fa fa-trash-o fa-lg"></i></a></td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="filteredWods.length == 0" class="empty-list">No workouts yet...</div>
             </div>
     </div>
 </div>
