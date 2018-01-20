@@ -1,0 +1,38 @@
+html,
+body {
+  padding: 30px;
+}
+
+body {
+  font-family: "Whitney SSm A", "Whitney SSm B", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+  background-color: #2D72D9;
+  color: #fff;
+}
+
+.error-container {
+  text-align: center;
+}
+
+.error-container h1 {
+  margin: 0;
+  font-size: 130px;
+  font-weight: 300;
+}
+
+.return {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.return a {
+  padding-bottom: 1px;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.return a:hover {
+  border-bottom-color: #fff;
+}

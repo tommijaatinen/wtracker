@@ -7,21 +7,15 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WodComponent } from './wod/wod.component';
+import { PageNotFoundComponent } from './page-not-found.component';
 import { WodService } from './wod/wod-service';
-import {SortPipe} from './sort-pipe';
-
-const appRoutes: Routes = [
-    { path: 'wtracker', component: WodComponent, pathMatch: 'full' },
-    { path: 'wtracker/:id', component: WodComponent },
-    { path: '', redirectTo: '/wtracker', pathMatch: 'full' },
-
-  //  { path: '**', component: WodComponent  }
-];
+import { SortPipe } from './sort-pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     WodComponent,
+    PageNotFoundComponent,
     SortPipe
   ],
   imports: [
