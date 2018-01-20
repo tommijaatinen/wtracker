@@ -23,9 +23,9 @@ export class WodComponent implements OnInit {
        {id: 2, name: "Crosstraining"}
      ];
 
-    wods: Wod[] = [];
     wod: Wod = new Wod();
-    filteredWods: Wod[];
+    wods: Wod[] = [];
+    filteredWods: Wod[] = [];
     wodsSubject  = new Subject();
 
     constructor(private wodService: WodService) {
