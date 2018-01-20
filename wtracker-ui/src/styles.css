@@ -33,3 +33,7 @@ th {
     font-size: 20px;
     color: grey;
 }
+
+.active {
+    color: red;
+}

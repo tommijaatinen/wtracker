@@ -1,6 +1,5 @@
 <div class="container">
-
-<div class="row">
+    <div class="row">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3>Workouts</h3>
@@ -72,8 +71,8 @@
                                 <td>{{wod.name}}</td>
                                 <td>{{wod.type}}</td>
                                 <td>{{wod.description}}</td>
-                                <td><a href="#" (click)="onUpdate(wod)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>        
-                                <td><a href="#" (click)="onDelete(wod.id)">  <i class="fa fa-trash-o fa-lg"></i></a></td>
+                                <td><a (click)="onUpdate(wod)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>        
+                                <td><a (click)="onDelete(wod.id)"><i class="fa fa-trash-o fa-lg"></i></a></td>
                           </tr>
                         </tbody>
                     </table>

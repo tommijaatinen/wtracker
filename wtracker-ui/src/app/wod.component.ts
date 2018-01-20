@@ -4,7 +4,6 @@ import { Wod } from './wod';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
-  selector: 'app-root',
   templateUrl: './wod.component.html',
   styleUrls: ['./wod.component.css'],
   providers: [WodService]
