@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WodComponent } from './wod/wod.component';
 import { WodService } from './wod/wod-service';
@@ -27,10 +28,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true }
-    )
+    AppRoutingModule
   ],
   exports: [
     SortPipe
