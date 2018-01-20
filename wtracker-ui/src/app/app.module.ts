@@ -5,8 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { WodComponent } from './wod.component';
-import { WodService } from './wod-service';
+import { WodComponent } from './wod/wod.component';
+import { WodService } from './wod/wod-service';
 import {SortPipe} from './sort-pipe';
 
 const appRoutes: Routes = [
