@@ -10,7 +10,7 @@
                         <input type="text" (input)="onSearchChange($event.target.value)" class="form-control search" placeholder="Filter Workouts" />
                     </div>
                     <div class="col-xs-6">
-                        <button (click)="onAdd()" class="btn btn-success pull-right">Add new workout</button>
+                        <button (click)="onAdd()" id="add" class="btn btn-success pull-right">Add new workout</button>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div *ngIf="isUpdate" class="panel-heading">Edit workout</div>
 
                 <div class="panel-body">    
-                    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+                    <form #f="ngForm" id="form" (ngSubmit)="onSubmit(f)" novalidate>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input name="name" ngModel required #name  [(ngModel)]="wod.name" class="form-control">
@@ -54,7 +54,7 @@
                                 <th></th>
                                 <th></th>
                                 <th (click)="onSort('name')" class="clickable">Name<i class="fa fa-fw fa-sort"></i></th>
-                                <th (click)="onSort('type')" class="clickable">Type<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('type')" class="clickable ">Type<i class="fa fa-fw fa-sort"></i></th>
                                 <th (click)="onSort('description')" class="clickable">Description<i class="fa fa-fw fa-sort"></i></th>
                                 <th></th>
                                 <th></th>
@@ -71,8 +71,8 @@
                                 <td>{{wod.name}}</td>
                                 <td>{{wod.type}}</td>
                                 <td>{{wod.description}}</td>
-                                <td><a (click)="onUpdate(wod)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>        
-                                <td><a (click)="onDelete(wod.id)"><i class="fa fa-trash-o fa-lg"></i></a></td>
+                                <td><a (click)="onUpdate(wod)" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>        
+                                <td><a (click)="onDelete(wod.id)" class="remove"><i class="fa fa-trash-o fa-lg"></i></a></td>
                           </tr>
                         </tbody>
                     </table>
