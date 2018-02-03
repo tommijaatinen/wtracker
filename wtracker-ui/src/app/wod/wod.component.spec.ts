@@ -3,8 +3,8 @@ import {
     ComponentFixture, 
     ComponentFixtureAutoDetect, 
     async,
-    fakeAsync,
-    tick} from '@angular/core/testing';
+    fakeAsync} from '@angular/core/testing';
+
 import { DebugElement }    from '@angular/core';
 import { WodComponent } from './wod.component';
 import { SortPipe } from '../sort-pipe';
@@ -42,7 +42,6 @@ describe('WodComponent', () => {
         debug = fixture.debugElement.query(By.css('.row'));
         element  = debug.nativeElement;
         wodService = TestBed.get(WodService);
-
     });
     
     it('should render the component',()=> {
@@ -98,10 +97,5 @@ describe('WodComponent', () => {
         })
     }))
 
-    it('should hide form when cancel is clicked ', () => {
-
-    })
-
-    
 })
 
