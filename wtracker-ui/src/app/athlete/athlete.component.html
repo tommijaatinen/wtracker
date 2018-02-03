@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3>Athletes</h3>
+            </div>
+            <div *ngIf="!show" class="panel-body">
+                <div class="filter">
+                    <div class="col-xs-6">
+                        <input type="text" (input)="onSearchChange($event.target.value)" class="form-control search" placeholder="Filter Athletes" />
+                    </div>
+                    <div class="col-xs-6">
+                        <button (click)="onAdd()" class="btn btn-success pull-right">Add new athlete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default panel-space" [hidden]="!show">
+                <div *ngIf="!isUpdate" class="panel-heading">Add new athlete</div>
+                <div *ngIf="isUpdate" class="panel-heading">Edit athlete</div>
+
+                <div class="panel-body">    
+                    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <input name="firstName" ngModel required #firstName  [(ngModel)]="athlete.firstName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">First name</label>
+                            <input name="lastName" ngModel required #lastName  [(ngModel)]="athlete.lastName" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth</label>
+                            <input rows="5" name="dateOfBirth" ngModel required #dateOfBirth [(ngModel)]="athlete.dateOfBirth" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight">Weight</label>
+                            <input rows="5" name="weight" ngModel required #weight [(ngModel)]="athlete.weight" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select class="form-control type" name="gender" [(ngModel)]="athlete.gender">
+                                <option *ngFor="let g of genders" [ngValue]="g.value" [selected]="g.id == gender.value">{{g.value}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <button *ngIf="!isUpdate" class="btn btn-success pull-right">Add</button>
+                            <button *ngIf="isUpdate" class="btn btn-success pull-right">Update</button>
+                            <button (click)="onCancel()" class="btn btn-cancel pull-right btn-space">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                </div>
+
+                <div *ngIf="filteredAthletes.length > 0">
+                    <table *ngIf="!show" class="table table-hover table-striped">
+                        <thead>
+                            <tr class="panel-heading">
+                                <th></th>
+                                <th></th>
+                                <th (click)="onSort('firstName')" class="clickable">First name<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('lastName')" class="clickable">Last name<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('gender')" class="clickable">Gender<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('weight')" class="clickable">Weight<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('dateOfBirth')" class="clickable">Date of Birth<i class="fa fa-fw fa-sort"></i></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="align-middle">
+                            <tr *ngFor="let athlete of filteredAthletes | sortBy : fieldName : sortAsc; let i = index" class="clickable">
+                                <td>{{i}}</td>
+                                <td></td>                                
+                                <td>{{athlete.firstName}}</td>
+                                <td>{{athlete.lastName}}</td>
+                                <td>{{athlete.gender}}</td>
+                                <td>{{athlete.weight}}</td>
+                                <td>{{athlete.dateOfBirth}}</td>
+                                <td><a (click)="onUpdate(athlete)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>        
+                                <td><a (click)="onDelete(athlete.id)"><i class="fa fa-trash-o fa-lg"></i></a></td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="filteredAthletes.length == 0" class="empty-list">No athletes yet...</div>
+            </div>
+    </div>
+</div>

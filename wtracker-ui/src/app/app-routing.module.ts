@@ -1,12 +1,15 @@
-import { NgModule }              from '@angular/core';
-import { RouterModule, Routes }  from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { WodComponent } from './wod/wod.component';
+import { AthleteComponent } from './athlete/athlete.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 const appRoutes: Routes = [
-    { path: 'wtracker', component: WodComponent, pathMatch: 'full' },
-    { path: 'wtracker/:id', component: WodComponent },
-    { path: '', redirectTo: '/wtracker', pathMatch: 'full' },
+    { path: 'wtracker/wods', component: WodComponent, pathMatch: 'full' },
+    { path: 'wtracker/wods/:id', component: WodComponent },
+    { path: 'wtracker/athletes', component: AthleteComponent, pathMatch: 'full' },
+    { path: 'wtracker/athletes/:id', component: AthleteComponent, pathMatch: 'full' },
+    { path: '', redirectTo: '/wtracker/wods', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
 
