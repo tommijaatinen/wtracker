@@ -6,7 +6,6 @@ import { Subject } from 'rxjs/Subject';
 @Component({
   templateUrl: './wod.component.html',
   styleUrls: ['./wod.component.css'],
-  //providers: [WodService]
 })
 
 @Injectable()
