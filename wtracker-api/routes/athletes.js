@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Person = require('../models/Person.js');
+var Athlete = require('../models/Athlete.js');
 
 var errorHandler = function(err, obj) {
       if (err)
@@ -10,34 +10,34 @@ var errorHandler = function(err, obj) {
 }
 
 router.get('/', function(req, res, next) {
-    Person.find(function (err, persons) {
+    Athlete.find(function (err, athletes) {
         if(err) 
             return next(err);
-        res.json(persons);        
+        res.json(athletes);        
     });
 });
 
 router.get('/:id', function(req, res, next) {
-   Person.findById(req.params.id, function(err, person) {
+   Athlete.findById(req.params.id, function(err, athlete) {
       if (err)
           return next(err);
-       res.json(person);
+       res.json(athlete);
    }); 
 });
 
 router.put('/', function(req, res, next) {
-    Person.create(req.body, function(err, person) {
+    Athlete.create(req.body, function(err, athlete) {
         if(err)
             return next(err);
-        res.json(person);
+        res.json(athlete);
     });
 });
 
 router.delete('/:id', function(req, res, next) {
-   Person.findByIdAndRemove(req.params.id, function(err, person) {
+   Athlete.findByIdAndRemove(req.params.id, function(err, athlete) {
       if (err)
           return next(err);
-       res.json(person);
+       res.json(athlete);
    }); 
 });
 

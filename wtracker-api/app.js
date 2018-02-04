@@ -8,7 +8,7 @@ var cors = require('cors');
 
 var index = require('./routes/index');
 var wods = require('./routes/wods');
-var persons = require('./routes/persons');
+var athletes = require('./routes/athletes');
 
 // mongo
 var mongoose = require('mongoose');
@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/wods', wods);
-app.use('/persons', persons);
+app.use('/athletes', athletes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
