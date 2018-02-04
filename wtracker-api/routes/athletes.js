@@ -25,6 +25,16 @@ router.get('/:id', function(req, res, next) {
    }); 
 });
 
+router.post('/', function(req, res, next) {
+    res.setHeader('Content-Type', 'application/json');
+
+    Athlete.create(req.body, function(err, athlete) {
+        if(err)
+            return next(err);
+        res.json(athlete);
+    });
+});
+
 router.put('/', function(req, res, next) {
     Athlete.create(req.body, function(err, athlete) {
         if(err)
