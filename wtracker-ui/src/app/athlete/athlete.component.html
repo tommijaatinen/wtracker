@@ -72,7 +72,7 @@
                                 <th (click)="onSort('lastName')" class="clickable">Last name<i class="fa fa-fw fa-sort"></i></th>
                                 <th (click)="onSort('gender')" class="clickable">Gender<i class="fa fa-fw fa-sort"></i></th>
                                 <th (click)="onSort('weight')" class="clickable">Weight<i class="fa fa-fw fa-sort"></i></th>
-                                <th (click)="onSort('dateOfBirth')" class="clickable">Date of Birth<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('dateOfBirth')" class="clickable">Age<i class="fa fa-fw fa-sort"></i></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -85,7 +85,7 @@
                                 <td>{{athlete.lastName}}</td>
                                 <td>{{athlete.gender}}</td>
                                 <td>{{athlete.weight}}</td>
-                                <td>{{athlete.dateOfBirth | date: 'dd.MM.yyyy'}}</td>
+                                <td>{{athlete.age}}
                                 <td><a (click)="onUpdate(athlete)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>        
                                 <td><a (click)="onDelete(athlete.id)"><i class="fa fa-trash-o fa-lg"></i></a></td>
                           </tr>

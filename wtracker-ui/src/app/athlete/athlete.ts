@@ -3,6 +3,7 @@ export class Athlete {
     firstName: String;
     lastName: String;
     dateOfBirth: Date;
+    age: Number;
     weight: Number;
     gender: String;
 }

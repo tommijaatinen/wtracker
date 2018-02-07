@@ -4,6 +4,7 @@ import * as fiLocale from 'date-fns/locale/fi';
 import { AthleteService } from './athlete-service';
 import { Athlete } from './athlete';
 import { Subject } from 'rxjs/Subject';
+import { AgeFromDateString, AgeFromDate } from 'age-calculator';
 
 @Component({
   templateUrl: './athlete.component.html',
@@ -38,9 +39,10 @@ export class AthleteComponent implements OnInit {
     getAthletes() : void {
         this.athleteService
             .getAthletes()
-            .subscribe(a => {
-                this.athletes = a
-                this.filteredAthletes = a
+            .subscribe(athletes => {
+                this.calculateAges(athletes)
+                this.athletes = athletes
+                this.filteredAthletes = athletes
         });
     }
 
@@ -119,8 +121,15 @@ export class AthleteComponent implements OnInit {
         return athlete.firstName.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0
            || athlete.lastName.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0
            || athlete.gender.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0
-           || athlete.weight.indexOf(searchTerm.toUpperCase()) >= 0
-           || athlete.dateOfBirth.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0           
+           || athlete.weight.toString().indexOf(searchTerm.toUpperCase()) >= 0
+           || athlete.age.toString().toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0           
+    }
+        
+    private calculateAges(athletes) : Athlete[] {
+        return athletes.map(a =>  {
+           a.age = this.calculateAge(a.dateOfBirth); 
+        });
     }
 
-}
+    private calculateAge(dob) : Number { return new AgeFromDateString(dob).age };
+ }
