@@ -2,7 +2,7 @@ export class Athlete {
     id: String;
     firstName: String;
     lastName: String;
-    dateOfBirth: String;
-    gender: String;
+    dateOfBirth: Date;
     weight: Number;
+    gender: String;
 }

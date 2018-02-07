@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 body {
     font-family: futura;
     font-size: 13px;
@@ -64,3 +66,5 @@ th {
 .type {
     width: 30%;
 }
+
+ .glyphicon.larger { font-size: 150%; }
