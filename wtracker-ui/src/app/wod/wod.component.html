@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row">
         <div class="panel panel-primary">
@@ -10,7 +11,7 @@
                         <input type="text" (input)="onSearchChange($event.target.value)" class="form-control search" placeholder="Filter Workouts" />
                     </div>
                     <div class="col-xs-6">
-                        <button (click)="onAdd()" id="add" class="btn btn-success pull-right">Add new workout</button>
+                        <button (click)="onAdd()" id="add" class="btn btn-success pull-right">Add Workout</button>
                     </div>
                 </div>
             </div>
@@ -20,7 +21,7 @@
                 <div *ngIf="isUpdate" class="panel-heading">Edit workout</div>
 
                 <div class="panel-body">    
-                    <form #f="ngForm" id="form" (ngSubmit)="onSubmit(f)" novalidate>
+                    <form #f="ngForm" id="form" (ngSubmit)="onSubmit(f)" ngNativeValidate>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input name="name" ngModel required #name  [(ngModel)]="wod.name" class="form-control">
@@ -33,7 +34,7 @@
 
                         <div class="form-group">
                             <label for="type">Type</label>
-                            <select class="form-control type" name="type" [(ngModel)]="wod.type">
+                            <select class="form-control type" name="type" [(ngModel)]="wod.type" required>
                                 <option *ngFor="let t of wodTypes" [ngValue]="t.name" [selected]="t.id == wod.type">{{t.name}}</option>
                             </select>
                         </div>
