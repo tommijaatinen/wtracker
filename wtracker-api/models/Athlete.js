@@ -5,7 +5,7 @@ var AthleteSchema = new mongoose.Schema({
     lastName: String,
     dateOfBirth: Date,
     weight: Number,
-    Gender: String
+    gender: String
 });
 
 module.exports = mongoose.model('Athlete', AthleteSchema);
