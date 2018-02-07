@@ -72,6 +72,7 @@ export class AthleteComponent implements OnInit {
     onAdd() : void {
         this.athlete = new Athlete();
         this.show = true;
+        this.dateOfBirth = null;
     }
 
     onUpdate(athlete) : void {
