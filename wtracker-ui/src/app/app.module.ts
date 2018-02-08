@@ -26,8 +26,7 @@ import { SortPipe } from './sort-pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
-//    NgDatepickerModule,
-      NgbModule.forRoot(),
+    NgbModule.forRoot(),
       AppRoutingModule
   ],
   exports: [
