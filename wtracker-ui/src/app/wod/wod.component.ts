@@ -18,9 +18,10 @@ export class WodComponent extends FilteringComponent implements OnInit {
     fieldName = "name";
 
     wodTypes = [
-       {id: 0, name: "Bodyweight"},
-       {id: 1, name: "Kettlebell"},
-       {id: 2, name: "Crosstraining"}
+        {id: 0, name: "Bodyweight"},
+        {id: 1, name: "Kettlebell"},
+        {id: 2, name: "Crosstraining"},
+        {id: 3, name: "Other"}
      ];
 
     wod: Wod = new Wod();
