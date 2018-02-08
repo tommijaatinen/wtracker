@@ -1,4 +1,6 @@
-export class Athlete {
+import { AbstractFilterable } from '../abstract-filterable';
+
+export class Athlete extends AbstractFilterable {
     id: String;
     firstName: String;
     lastName: String;
@@ -6,5 +8,9 @@ export class Athlete {
     age: Number;
     weight: Number;
     gender: String;
-    filterableProperties = ['firstName', 'lastName', 'gender', 'age', 'weight'];
+    
+    constructor() {
+        super();
+        this.filterableProperties.push('firstName', 'lastName', 'gender', 'age', 'weight');  
+    }
 }

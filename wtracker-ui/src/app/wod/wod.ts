@@ -1,7 +1,14 @@
-export class Wod {
+import { AbstractFilterable } from '../abstract-filterable';
+
+export class Wod extends AbstractFilterable {
     id: String;
     name: String;
     description: String;
     type: String;
-    filterableProperties = ['name', 'description', 'type'];
+
+    constructor() {
+        super();
+        this.filterableProperties.push('name', 'description', 'type');  
+    }
+
 }
