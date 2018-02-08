@@ -6,4 +6,5 @@ export class Athlete {
     age: Number;
     weight: Number;
     gender: String;
+    filterableProperties = ['firstName', 'lastName', 'gender', 'age', 'weight'];
 }

@@ -11,17 +11,17 @@
                         <input type="text" (input)="onSearchChange($event.target.value)" class="form-control search" placeholder="Filter Athletes" />
                     </div>
                     <div class="col-xs-6">
-                        <button (click)="onAdd()" class="btn btn-success pull-right">Add Athlete</button>
+                        <button (click)="onAdd()" id="add" class="btn btn-success pull-right">Add Athlete</button>
                     </div>
                 </div>
             </div>
 
             <div [hidden]="!show" class="panel panel-default panel-space" >
-                <div *ngIf="!isUpdate" class="panel-heading" style="background: url(../assets/panel-heading.jpg) !important;"><h4>Add new athlete</h4></div>
-                <div *ngIf="isUpdate" class="panel-heading">Edit athlete</div>
+                <div *ngIf="!isUpdate" class="panel-heading"><h4>Add new athlete</h4></div>
+                <div *ngIf="isUpdate" class="panel-heading"><h4>Edit athlete</h4></div>
 
                 <div class="panel-body">    
-                    <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate class="form">
+                    <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate class="form" name="athlete-form">
                         <div class="form-group">
                             <label for="firstName">First name</label>
                             <input name="firstName" required #firstName [(ngModel)]="athlete.firstName" class="form-control">
@@ -35,7 +35,7 @@
                             <label for="dateOfBirth">Date of Birth</label>
                             <div class="form-inline">
                                 <input class="form-control" placeholder="pp.kk.vvvv." name="dp" [(ngModel)]="dateOfBirth" ngmodel required ngbDatepicker #d="ngbDatepicker" [minDate]="minDate">
-                                <button class="btn"  type="button" style="background-color: transparent; vertical-align: middle;">
+                                <button class="btn" type="button" style="background-color: transparent; vertical-align: middle;">
                                     <i class="fa fa-calendar-check-o" style="font-size:24px" (click)="d.toggle()"></i>
                                 </button>
                             </div>
@@ -85,9 +85,9 @@
                                 <td>{{athlete.lastName}}</td>
                                 <td>{{athlete.gender}}</td>
                                 <td>{{athlete.weight}}</td>
-                                <td>{{athlete.age}}
-                                <td><a (click)="onUpdate(athlete)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>        
-                                <td><a (click)="onDelete(athlete.id)"><i class="fa fa-trash-o fa-lg"></i></a></td>
+                                <td id="age">{{athlete.age}}</td>
+                                <td><a (click)="onUpdate(athlete)" id="edit"><i class="fa fa-pencil-square-o pull-right" aria-hidden="true"></i></a></td>        
+                                <td><a (click)="onDelete(athlete.id)" id="remove"><i class="fa fa-trash-o fa-lg"></i></a></td>
                           </tr>
                         </tbody>
                     </table>

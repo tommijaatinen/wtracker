@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { WodService } from './wod-service';
 import { Wod } from './wod';
 import { Subject } from 'rxjs/Subject';
+import { FilteringComponent } from '../filtering-component';
 
 @Component({
   templateUrl: './wod.component.html',
@@ -9,7 +10,7 @@ import { Subject } from 'rxjs/Subject';
 })
 
 @Injectable()
-export class WodComponent implements OnInit {
+export class WodComponent extends FilteringComponent implements OnInit {
     title = 'WOD Tracker';
     show = false;
     isUpdate = false;
@@ -28,6 +29,7 @@ export class WodComponent implements OnInit {
     wodsSubject  = new Subject();
 
     constructor(private wodService: WodService) {
+        super();
         this.wodsSubject.subscribe(() => this.getWods());
     }
 
@@ -116,12 +118,6 @@ export class WodComponent implements OnInit {
 
     private getWodType(wod) : String {
         return this.wodTypes.filter(t => t.name === wod.value.type)[0].name
-    }
-
-    private isMatch(wod, searchTerm) : Boolean {
-        return wod.name.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0
-           || wod.description.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0
-           || wod.type.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0;        
     }
 
 }

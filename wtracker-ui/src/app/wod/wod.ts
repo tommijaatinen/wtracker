@@ -3,4 +3,5 @@ export class Wod {
     name: String;
     description: String;
     type: String;
+    filterableProperties = ['name', 'description', 'type'];
 }

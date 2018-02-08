@@ -1,10 +1,10 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { DatepickerOptions } from 'ng2-datepicker';
 import * as fiLocale from 'date-fns/locale/fi';
 import { AthleteService } from './athlete-service';
 import { Athlete } from './athlete';
 import { Subject } from 'rxjs/Subject';
 import { AgeFromDateString, AgeFromDate } from 'age-calculator';
+import { FilteringComponent } from '../filtering-component';
 
 @Component({
   templateUrl: './athlete.component.html',
@@ -12,14 +12,14 @@ import { AgeFromDateString, AgeFromDate } from 'age-calculator';
 })
 
 @Injectable()
-export class AthleteComponent implements OnInit {
+export class AthleteComponent extends FilteringComponent implements OnInit {
         
     show = false;
     isUpdate = false;
     sortAsc = true;
     fieldName = "lastName";
-    minDate = {year: 1950, month: 1, day: 1};
     genders = [ "Male", "Female"]
+    minDate = {year: 1900, month: 1, day: 1};
     dateOfBirth = null
 
     athlete:Athlete = new Athlete();
@@ -28,6 +28,7 @@ export class AthleteComponent implements OnInit {
     athletesSubject  = new Subject();
 
     constructor(private athleteService: AthleteService) {
+        super();
         this.athlete.dateOfBirth = new Date();
         this.athletesSubject.subscribe(() => this.getAthletes());
     }
@@ -47,7 +48,6 @@ export class AthleteComponent implements OnInit {
     }
 
     onSubmit(athlete) : void {
-        
         let dob = new Date(this.dateOfBirth.year, this.dateOfBirth.month - 1, this.dateOfBirth.day + 1);
 
         if (!this.isUpdate) {
@@ -78,8 +78,9 @@ export class AthleteComponent implements OnInit {
     onUpdate(athlete) : void {
         this.athleteService
             .getAthleteById(athlete.id)
-            .subscribe(r => {
-                this.athlete = r;
+            .subscribe(a => {
+                this.athlete = a;
+                this.setDatePickerModelValue(a.dateOfBirth)
                 this.toggle(true);
         });
     }
@@ -118,14 +119,6 @@ export class AthleteComponent implements OnInit {
         this.isUpdate = value;
     }
 
-    private isMatch(athlete, searchTerm) : Boolean {
-        return athlete.firstName.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0
-           || athlete.lastName.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0
-           || athlete.gender.toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0
-           || athlete.weight.toString().indexOf(searchTerm.toUpperCase()) >= 0
-           || athlete.age.toString().toUpperCase().indexOf(searchTerm.toUpperCase()) >= 0           
-    }
-        
     private calculateAges(athletes) : Athlete[] {
         return athletes.map(a =>  {
            a.age = this.calculateAge(a.dateOfBirth); 
@@ -133,4 +126,13 @@ export class AthleteComponent implements OnInit {
     }
 
     private calculateAge(dob) : Number { return new AgeFromDateString(dob).age };
+
+    private setDatePickerModelValue(dateOfBirth) : void {
+        let date = new Date(dateOfBirth);                
+        this.dateOfBirth = {
+            year: date.getFullYear(), 
+            month: date.getMonth() + 1, 
+            day: date.getDate() - 1
+        }
+    }
  }
