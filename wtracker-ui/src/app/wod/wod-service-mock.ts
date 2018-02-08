@@ -26,6 +26,10 @@ export class WodServiceMock {
     getWods() : Observable<Wod[]> {
         return Observable.of(this.mockWods);
     } 
+    
+    getWodById(id) : Observable<Wod> {
+        return Observable.of(this.mockWod1);
+    }
 }
 
 

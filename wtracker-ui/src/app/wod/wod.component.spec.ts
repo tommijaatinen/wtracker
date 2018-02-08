@@ -69,22 +69,16 @@ describe('WodComponent', () => {
     }); 
 
     it('should have edit link for each workout', () => {
-        let links = fixture.nativeElement.querySelectorAll('a.edit')
+        let links = fixture.nativeElement.querySelectorAll('a#edit')
         expect(links.length).toEqual(component.wods.length)
     });
 
     it('should have remove link for each workout', () => {
-        let links = fixture.nativeElement.querySelectorAll('a.remove')
+        let links = fixture.nativeElement.querySelectorAll('a#remove')
         expect(links.length).toEqual(component.wods.length)
     });
 
-    it('should not display add workout form ', () => {
-        expect(component.show).toBeFalsy();
-        let form = fixture.debugElement.nativeElement.querySelector('#form');
-        expect(form).toBeFalsy();
-    })
-
-    it('should display form when add button is clicked', fakeAsync(() => {
+    it('should call onAdd() when add button is clicked', fakeAsync(() => {
         let spy = spyOn(component, 'onAdd').and.callThrough();
         let button = fixture.debugElement.nativeElement.querySelector('#add');
 
@@ -94,6 +88,29 @@ describe('WodComponent', () => {
 
         fixture.whenStable().then(() => {
             expect(component.onAdd).toHaveBeenCalled();
+        })
+    }))
+
+    it('should call onUpdate() when edit button is clicked', fakeAsync(() => {
+        let spy = spyOn(component, 'onUpdate').and.callThrough();
+        let link = fixture.nativeElement.querySelectorAll('a#edit')[0]
+
+        expect(component.isUpdate).toBeFalsy();
+        link.click();
+        expect(component.isUpdate).toBeTruthy();
+
+        fixture.whenStable().then(() => {
+            expect(component.onUpdate).toHaveBeenCalled();
+        })
+    }))
+
+    it('should call onDelete() when add button is clicked', fakeAsync(() => {
+        let spy = spyOn(component, 'onDelete').and.callThrough();
+        let link = fixture.nativeElement.querySelectorAll('a#remove')[0]
+        link.click();
+
+        fixture.whenStable().then(() => {
+            expect(component.onDelete).toHaveBeenCalled();
         })
     }))
 
