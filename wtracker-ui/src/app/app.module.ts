@@ -8,6 +8,7 @@ import { FinDateParserFormatter } from './fin-date-parser-formatter';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WodComponent } from './wod/wod.component';
+import { WodResultsComponent } from './wod-results/wod-results.component';
 import { AthleteComponent } from './athlete/athlete.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { WodService } from './wod/wod-service';
@@ -18,6 +19,7 @@ import { SortPipe } from './sort-pipe';
   declarations: [
     AppComponent,
     WodComponent,
+    WodResultsComponent,
     AthleteComponent,
     PageNotFoundComponent,
     SortPipe
@@ -27,7 +29,7 @@ import { SortPipe } from './sort-pipe';
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-      AppRoutingModule
+    AppRoutingModule
   ],
   exports: [
     SortPipe

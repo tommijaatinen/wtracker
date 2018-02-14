@@ -1,5 +1,6 @@
 
 <div class="container">
+    
     <div class="row">
         
         <div class="panel panel-primary">
@@ -19,36 +20,49 @@
             
             
             <div class="panel panel-default panel-space" [hidden]="!show">
-                <div *ngIf="!isUpdate" class="panel-heading"><h4>Add new workout</h4></div>
-                <div *ngIf="isUpdate" class="panel-heading"><h4>Edit workout</h4></div>
-                
-                <div class="panel-body">    
-                    <form #f="ngForm" id="form" (ngSubmit)="onSubmit(f)" ngNativeValidate>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input name="name" ngModel required #name  [(ngModel)]="wod.name" class="form-control">
+                <div class="row">
+                        <div class="column col-sm-3" style="height: 100%;"> 
+                            <div class="panel-body" >
+                            <div class="panel-heading"><h4>Sissos saatana</h4></div>
+                             <div class="panel-body">  
+                                <h3>Jotain tauhkaa</h3>
+                            </div>
                         </div>
+                    </div>
+                    <div class="column col-sm-9" style="border-left: 1px solid gray; margin-bottom: 4%;" >
+                    
+                        <div *ngIf="!isUpdate" class="panel-heading"><h4>Add new workout</h4></div>
+                        <div *ngIf="isUpdate" class="panel-heading"><h4>Edit workout</h4></div>
 
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea rows="5" name="description" ngModel required #description [(ngModel)]="wod.description" class="form-control"></textarea>
-                        </div>
+                        <div class="panel-body">
+                            <form #f="ngForm" id="form" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input name="name" ngModel required #name  [(ngModel)]="wod.name" class="form-control">
+                                </div>
 
-                        <div class="form-group">
-                            <label for="type">Type</label>
-                            <select class="form-control type" name="type" [(ngModel)]="wod.type" required>
-                                <option *ngFor="let t of wodTypes" [ngValue]="t.name" [selected]="t.id == wod.type">{{t.name}}</option>
-                            </select>
-                        </div>
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea rows="5" name="description" ngModel required #description [(ngModel)]="wod.description" class="form-control"></textarea>
+                                </div>
 
-                        <div class="form-group">
-                            <button *ngIf="!isUpdate" class="btn btn-success pull-right">Add</button>
-                            <button *ngIf="isUpdate" class="btn btn-success pull-right">Update</button>
-                            <button (click)="onCancel()" class="btn btn-cancel pull-right btn-space">Cancel</button>
+                                <div class="form-group">
+                                    <label for="type">Type</label>
+                                    <select class="form-control type" name="type" [(ngModel)]="wod.type" required>
+                                        <option *ngFor="let t of wodTypes" [ngValue]="t.name" [selected]="t.id == wod.type">{{t.name}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button *ngIf="!isUpdate" class="btn btn-success pull-right">Add</button>
+                                    <button *ngIf="isUpdate" class="btn btn-success pull-right">Update</button>
+                                    <button (click)="onCancel()" class="btn btn-cancel pull-right btn-space">Cancel</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
-                </div>
+            </div>
 
                 <div *ngIf="filteredWods.length > 0">
                     <table *ngIf="!show" class="table table-hover table-striped">
@@ -64,7 +78,7 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
-                            <tr *ngFor="let wod of filteredWods | sortBy : fieldName : sortAsc; let i = index" class="clickable">
+                            <tr *ngFor="let wod of filteredWods | sortBy : fieldName : sortAsc; let i = index" class="clickable" [routerLink]="['/wtracker/wods/' + wod.id + '/results']">
                                 <td>{{i}}</td>
                                 <td>
                                     <img *ngIf="wod.type=='Bodyweight'" src="../assets/bw.png">
