@@ -1,7 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import * as fiLocale from 'date-fns/locale/fi';
 import { AthleteService } from './athlete-service';
-import { Athlete } from './athlete';
+import { Athlete } from '../model/athlete';
 import { Subject } from 'rxjs/Subject';
 import { AgeFromDateString, AgeFromDate } from 'age-calculator';
 import { FilteringComponent } from '../filtering-component';

@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { WodService } from './wod-service';
-import { Wod } from './wod';
+import { Wod } from '../model/wod';
 import { Subject } from 'rxjs/Subject';
 import { FilteringComponent } from '../filtering-component';
 

@@ -3,8 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
-
-import { Wod } from './wod';
+import { Wod } from '../model/wod';
 
 @Injectable()
 export class WodService { 

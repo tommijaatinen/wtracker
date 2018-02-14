@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import "rxjs/add/observable/of";
-import { Athlete } from './athlete';
+import { Athlete } from '../model/athlete';
 
 @Injectable()
 export class AthleteServiceMock { 
     
-    mockAthlete1: Athlete = { 
+    mockAthlete1 = new Athlete({ 
         id: '1', 
         firstName: 'firstName_1',
         lastName: 'lastName_1',
@@ -14,9 +14,9 @@ export class AthleteServiceMock {
         weight: 80,
         dateOfBirth: new Date(),
         age: 1
-    };
+    });
 
-    mockAthlete2: Athlete = { 
+    mockAthlete2 = new Athlete({ 
         id: '2', 
         firstName: 'firstName_2',
         lastName: 'lastName_2',
@@ -24,9 +24,9 @@ export class AthleteServiceMock {
         weight: 100,
         dateOfBirth: new Date(),
         age: 1
-    };
+    });
 
-    mockAthlete3: Athlete = { 
+    mockAthlete3 = new Athlete({ 
         id: '3', 
         firstName: 'firstName_3',
         lastName: 'lastName_3',
@@ -34,7 +34,7 @@ export class AthleteServiceMock {
         weight: 50,
         dateOfBirth: new Date(),
         age: 1
-    };
+    });
 
     mockAthletes: Athlete[] = [ this.mockAthlete1, this.mockAthlete2, this.mockAthlete3 ];
 

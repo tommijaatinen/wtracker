@@ -1,3 +1,5 @@
-export abstract class AbstractFilterable {
+export  class Filterable {
+    
     public filterableProperties:String[] = [];
+    
 }

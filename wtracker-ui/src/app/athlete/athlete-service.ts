@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Athlete } from './athlete';
+import { Athlete } from '../model/athlete';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 

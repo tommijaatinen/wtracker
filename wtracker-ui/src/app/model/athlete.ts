@@ -1,6 +1,6 @@
-import { AbstractFilterable } from '../abstract-filterable';
+import { Filterable } from './filterable';
 
-export class Athlete extends AbstractFilterable {
+export class Athlete extends Filterable {
     id: String;
     firstName: String;
     lastName: String;
@@ -9,8 +9,9 @@ export class Athlete extends AbstractFilterable {
     weight: Number;
     gender: String;
     
-    constructor() {
+    public constructor(init? : Partial<Athlete>) {
         super();
+        Object.assign(this, init);
         this.filterableProperties.push('firstName', 'lastName', 'gender', 'age', 'weight');  
     }
 }
