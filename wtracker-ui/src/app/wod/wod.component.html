@@ -88,8 +88,8 @@
                                 <td>{{wod.name}}</td>
                                 <td>{{wod.type}}</td>
                                 <td>{{wod.description}}</td>
-                                <td><a (click)="onUpdate(wod)" id="edit"><i class="fa fa-pencil-square-o pull-right" aria-hidden="true"></i></a></td>        
-                                <td><a (click)="onDelete(wod.id)" id="remove"><i class="fa fa-trash-o fa-lg"></i></a></td>
+                                <td><a stop-propagation (click)="onUpdate(wod)" id="edit"><i class="fa fa-pencil-square-o pull-right" aria-hidden="true"></i></a></td>
+                                <td><a stop-propagation (click)="onDelete(wod.id)" id="remove"><i class="fa fa-trash-o fa-lg"></i></a></td>
                           </tr>
                         </tbody>
                     </table>

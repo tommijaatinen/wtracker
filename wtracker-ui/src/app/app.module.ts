@@ -10,10 +10,11 @@ import { AppComponent } from './app.component';
 import { WodComponent } from './wod/wod.component';
 import { WodResultsComponent } from './wod-results/wod-results.component';
 import { AthleteComponent } from './athlete/athlete.component';
-import { PageNotFoundComponent } from './page-not-found.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WodService } from './wod/wod-service';
 import { AthleteService } from './athlete/athlete-service';
 import { SortPipe } from './sort-pipe';
+import { StopPropagation } from './stop-propagation';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SortPipe } from './sort-pipe';
     WodResultsComponent,
     AthleteComponent,
     PageNotFoundComponent,
-    SortPipe
+    SortPipe,
+    StopPropagation
   ],
   imports: [
     BrowserModule,
