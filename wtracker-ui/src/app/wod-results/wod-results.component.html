@@ -1,1 +1,101 @@
-<h1>RESULTS for {{ id }}</h1>
+
+<div class="container">
+    
+    <div class="row">
+        
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3>WOD RESULTS</h3>
+            </div>
+            <div *ngIf="!show" class="panel-body">
+                <div class="filter">
+                    <div class="col-xs-6">
+                        <input type="text" (input)="onSearchChange($event.target.value)" class="form-control search" placeholder="Filter Workouts" />
+                    </div>
+                    <div class="col-xs-6">
+                        <button (click)="onAdd()" id="add" class="btn btn-success pull-right">Add new result</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="panel panel-default panel-space" [hidden]="!show">
+                <div class="row">
+                        <div class="column col-sm-3" style="height: 100%;"> 
+                            <div class="panel-body" >
+                            <div class="panel-heading"><h4>Sissos saatana</h4></div>
+                             <div class="panel-body">  
+                                <h3>Jotain tauhkaa</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column col-sm-9" style="border-left: 1px solid gray; margin-bottom: 4%;" >
+                    
+                        <div *ngIf="!isUpdate" class="panel-heading"><h4>Add new workout</h4></div>
+                        <div *ngIf="isUpdate" class="panel-heading"><h4>Edit workout</h4></div>
+
+                        <div class="panel-body">
+                            <form #f="ngForm" id="form" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input name="name" ngModel required #name  [(ngModel)]="wod.name" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea rows="5" name="description" ngModel required #description [(ngModel)]="wod.description" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="type">Type</label>
+                                    <select class="form-control type" name="type" [(ngModel)]="wod.type" required>
+                                        <option *ngFor="let t of wodTypes" [ngValue]="t.name" [selected]="t.id == wod.type">{{t.name}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button *ngIf="!isUpdate" class="btn btn-success pull-right">Add</button>
+                                    <button *ngIf="isUpdate" class="btn btn-success pull-right">Update</button>
+                                    <button (click)="onCancel()" class="btn btn-cancel pull-right btn-space">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div *ngIf="filteredWods.length > 0">
+                    <table *ngIf="!show" class="table table-hover table-striped">
+                        <thead>
+                            <tr class="panel-heading">
+                                <th></th>
+                                <th></th>
+                                <th (click)="onSort('name')" class="clickable">Name<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('type')" class="clickable ">Type<i class="fa fa-fw fa-sort"></i></th>
+                                <th (click)="onSort('description')" class="clickable">Description<i class="fa fa-fw fa-sort"></i></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="align-middle">
+                            <tr *ngFor="let wod of filteredWods | sortBy : fieldName : sortAsc; let i = index" class="clickable" [routerLink]="['/wtracker/wods/' + wod.id + '/results']">
+                                <td>{{i}}</td>
+                                <td>
+                                    <img *ngIf="wod.type=='Bodyweight'" src="../assets/bw.png">
+                                    <img *ngIf="wod.type=='Kettlebell'" src="../assets/kb.png">
+                                    <img *ngIf="wod.type=='Crosstraining'" src="../assets/ct.jpg">
+                                </td>
+                                <td>{{wod.name}}</td>
+                                <td>{{wod.type}}</td>
+                                <td>{{wod.description}}</td>
+                                <td><a stop-propagation (click)="onUpdate(wod)" id="edit"><i class="fa fa-pencil-square-o pull-right" aria-hidden="true"></i></a></td>
+                                <td><a stop-propagation (click)="onDelete(wod.id)" id="remove"><i class="fa fa-trash-o fa-lg"></i></a></td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="filteredWods.length == 0" class="empty-list">No workouts yet...</div>
+            </div>
+    </div>
+</div>
+
